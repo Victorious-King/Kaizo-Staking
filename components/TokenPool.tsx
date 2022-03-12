@@ -46,6 +46,8 @@ const TokenPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 	const getFarms = useCallback(async () => {
 
 
+		console.log('accountId',accountId)
+		
 		const totalStakedData = await near.nearViewFunction({
 			contractName: CONTRACT.PRESALE,
 			methodName: `get_status`,
