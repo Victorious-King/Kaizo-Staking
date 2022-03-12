@@ -203,13 +203,13 @@ const TokenPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 							<div>
 								<p className="opacity-75">Total Amount - $Dojo</p>
 								<p className="text-4xl font-semibold">
-									{toHumanReadableNumbers(poolProcessed.totalAmount)}
+									{toHumanReadableNumbers(`${poolProcessed.totalAmount}`)}
 								</p>
 							</div>
 							<div className="text-right">
 								<p className="opacity-75">Total Sold - $Dojo</p>
 								<p className="text-4xl font-semibold">
-									{toHumanReadableNumbers(poolProcessed.currentAmount)}
+									{toHumanReadableNumbers(`${poolProcessed.currentAmount}`)}
 								</p>
 							</div>
 						</div>
