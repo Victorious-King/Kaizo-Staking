@@ -21,7 +21,7 @@ interface IPoolProcessed {
 	title: string
 	totalAmount: number
 	currentAmount: number
-	price: any
+	price: number
 	claimableRewards: number
 	media: string
 	startTime: number
@@ -106,7 +106,7 @@ const TokenPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 			functionCalls: FunctionCallOptions[]
 		}[] = []
 
-		console.log(poolProcessed.price.toLocaleString('fullwide', {useGrouping:false}))
+		
 		let deposited = new BN(poolProcessed.price.toLocaleString('fullwide', {useGrouping:false}));
 		deposited = deposited.mul(new BN(purchaseCnt.toString()))
 
