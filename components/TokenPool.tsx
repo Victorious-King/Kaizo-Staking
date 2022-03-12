@@ -19,11 +19,13 @@ import BN from 'bn.js'
 
 interface IPoolProcessed {
 	title: string
-	totalStaked: any
-	rewards: number
+	totalAmount: number
+	currentAmount: number
+	price: any
 	claimableRewards: number
 	media: string
-	nftPoints:  string[]
+	startTime: number
+	endTime: number
 }
 
 interface PoolProps {
