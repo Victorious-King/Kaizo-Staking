@@ -167,7 +167,7 @@ const TokenPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 	}
 
 	const updateAmount = (e: React.FormEvent<HTMLInputElement>) => {
-		const newValue = e.target.value;
+		const newValue = (e.currentTarget as HTMLInputElement).value;
 
 		setPurchaseCnt(parseInt(newValue,10));
 	}
