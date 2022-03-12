@@ -24,6 +24,7 @@ export const CONTRACT = {
 	TOKEN: process.env.NEXT_PUBLIC_TOKEN_CONTRACT || '',
 	FARM: process.env.NEXT_PUBLIC_NFT_FARM_CONTRACT || '',
 	WRAP: process.env.NEXT_PUBLIC_NFT_CONTRACT || '',
+	PRESALE: process.env.NEXT_PUBLIC_PRESALE_CONTRACT || '',
 }
 
 export const getAmount = (amount: string | null | undefined) =>

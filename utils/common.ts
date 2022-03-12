@@ -79,6 +79,13 @@ export const formatParasAmount = (balance: string | number) => {
 	return JSBI.divide(JSBI.BigInt(balance), JSBI.BigInt(10 ** 18)).toString()
 }
 
+export const formatUnixTime = (UNIX_timestamp: number) => {
+	const a = new Date(UNIX_timestamp * 1e3).toLocaleString('en-GB');
+
+	return a
+	
+}
+
 export const parseParasAmount = (balance: string | number) => {
 	try {
 		return JSBI.multiply(JSBI.BigInt(balance), JSBI.BigInt(10 ** 18)).toString()
