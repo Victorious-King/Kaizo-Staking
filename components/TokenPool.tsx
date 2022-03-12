@@ -107,7 +107,7 @@ const TokenPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 		}[] = []
 
 		
-		let deposited = new BN(poolProcessed.price.toLocaleString('fullwide', {useGrouping:false}));
+		let deposited = poolProcessed ? new BN(poolProcessed.price.toLocaleString('fullwide', {useGrouping:false})) : new BN('0');
 		deposited = deposited.mul(new BN(purchaseCnt.toString()))
 
 		txs.push({
