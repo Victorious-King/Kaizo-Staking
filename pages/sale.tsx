@@ -47,7 +47,7 @@ const Home: NextPage = () => {
 			<Head />
 			<div className="bg-gray-900 min-h-screen pb-16 lg:pb-0">
 				<Header />
-				<div className="mt-4 max-w-6xl mx-auto" style={{ backgroundImage: `url(./Dojo_background.png)` }}>
+				<div className="mt-4 max-w-6xl mx-auto" style={{ backgroundImage: `url(./Dojo_background.png)`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center"  }}>
 					<div className="md:max-w-md mx-auto p-4">
 						<TokenPool type="nft" data={poolInfo} stakedNFT={userStakedNFT} />
 						<p className="text-white text-center text-sm mt-3">

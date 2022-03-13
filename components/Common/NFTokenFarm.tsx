@@ -19,7 +19,7 @@ const NFTokenFarm = ({ token, stakeNFT, type, point }: NFTokenFarmProps) => {
 			<div className="w-1/2 pr-4">
 				<div className="w-full h-full">
 					<Media
-						url={'https://nearnaut.mypinata.cloud/ipfs/' + token.metadata.media}
+						url={"https://cloudflare-ipfs.com/ipfs/bafybeie3tapnsmwdzhrq6vzb6vpo623kxgominzaiyxh7igdrskk2drdj4/" + token.metadata.media}
 						videoControls={false}
 						videoMuted={true}
 						videoLoop={true}

@@ -64,10 +64,10 @@ const MainPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 
 		const poolData: IPoolProcessed = {
 			title: "Kaizo Fighers",
-			media: "https://ipfs.fleek.co/ipfs/bafkreibp4kzksqsasgfrku4xabbig5fhqyaszktaql2knlfia3mus5mjcy",
+			media: "./BG image seq loop (30pfs)_00139.jpg",
 			totalStaked: totalStakedData,
 			rewards: token_reward_amount,
-			claimableRewards: unclaimedReward * token_reward_amount+1,
+			claimableRewards: unclaimedReward,
 			nftPoints: stakedNFT,
 		}
 
@@ -161,7 +161,7 @@ const MainPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 						</div>
 					</div>
 					<div className="relative">
-						<p className="text-3xl font-bold text-center">{poolProcessed.title}</p>
+						<p className="text-3xl font-bold text-center" style={{"font-family":"SINGLE_FIGHTER"}}>{poolProcessed.title}</p>
 						<div className="flex justify-between mt-4">
 							<div>
 								<p className="opacity-75">Total Staked</p>

@@ -1,10 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&display=swap');
 
+@font-face {font-family: "SCR-ITenReg W00 Regular";
+  src: url("../public/a5acb52ad33508145b573763ce39ad28.eot"); /* IE9*/
+  src: url("../public/a5acb52ad33508145b573763ce39ad28.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("../public/a5acb52ad33508145b573763ce39ad28.woff2") format("woff2"), /* chrome、firefox */
+  url("../public/a5acb52ad33508145b573763ce39ad28.woff") format("woff"), /* chrome、firefox */
+  url("../public/a5acb52ad33508145b573763ce39ad28.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url("../public/a5acb52ad33508145b573763ce39ad28.svg#SCR-ITenReg W00 Regular") format("svg"); /* iOS 4.1- */
+}
+
+@font-face {font-family: "SINGLE_FIGHTER";
+  src: url("../public/SINGLE_FIGHTER.otf"); /* IE9*/
+}
+
 html,
 body {
 	padding: 0;
 	margin: 0;
-	font-family: 'Epilogue', sans-serif;
+	font-family: 'SCR-ITenReg W00 Regular' !important;
+	font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -36,3 +53,5 @@ input[type='number'] {
 	-ms-overflow-style: none; /* IE and Edge */
 	scrollbar-width: none; /* Firefox */
 }
+
+

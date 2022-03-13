@@ -15,6 +15,7 @@ import { FunctionCallOptions } from 'near-api-js/lib/account'
 import ReactTooltip from 'react-tooltip'
 import IconInfo from './Icon/IconInfo'
 import BN from 'bn.js'
+import '../styles/Home.module.css'
 
 
 interface IPoolProcessed {
@@ -47,7 +48,7 @@ const TokenPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 
 
 		console.log('accountId',accountId)
-		
+
 		const totalStakedData = await near.nearViewFunction({
 			contractName: CONTRACT.PRESALE,
 			methodName: `get_status`,
@@ -86,7 +87,7 @@ const TokenPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 
 		const poolData: IPoolProcessed = {
 			title: "$Dojo Private Sale",
-			media: "https://ipfs.fleek.co/ipfs/bafkreibp4kzksqsasgfrku4xabbig5fhqyaszktaql2knlfia3mus5mjcy",
+			media: "./BG image seq loop (30pfs)_00139.jpg",
 			totalAmount: totalStakedData[1],
 			currentAmount: totalStakedData[0],
 			price: tokenPrice,
@@ -200,7 +201,7 @@ const TokenPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 						</div>
 					</div>
 					<div className="relative">
-						<p className="text-3xl font-bold text-center">{poolProcessed.title}</p>
+						<p className="text-3xl font-bold text-center title tilte-head">{poolProcessed.title}</p>
 						<div className="flex justify-between mt-4">
 							<div>
 								<p className="opacity-75">Total Amount - $Dojo</p>

@@ -56,6 +56,14 @@
   font-size: 1.5rem;
 }
 
+.tilte-head {
+  font-family: 'SINGLE_FIGHTER' !important;
+}
+
+.tilte-head-m {
+  font-family: 'SINGLE_FIGHTER' !important;
+}
+
 .code {
   background: #fafafa;
   border-radius: 5px;
