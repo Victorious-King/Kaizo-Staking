@@ -33,13 +33,21 @@ const UnstakeNFTModal = (props: UnstakeNFTModalProps) => {
 		const getStakedNFT = async () => {
 			stakedNFT.length === 0 && setIsLoading(true)
 			if (accountId) {
+
+				const userStakedNFTData = await near.nearViewFunction({
+					contractName: CONTRACT.FARM,
+					methodName: `get_amount_by_owner`,
+					args: {
+						account_id: accountId,
+					},
+				})
 				const txs: {
 					receiverId: string
 					functionCalls: FunctionCallOptions[]
 				}[] = []
 
 				const stakedTokens: INFToken[] = [];
-				for (const tokenId of props.nftPoints) {
+				for (const tokenId of userStakedNFTData) {
 					const tokenInfo: INFToken = await near.nearViewFunction({
 						contractName: CONTRACT.WRAP,
 						methodName: `nft_token`,
