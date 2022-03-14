@@ -33,7 +33,6 @@ const UnstakeNFTModal = (props: UnstakeNFTModalProps) => {
 		const getStakedNFT = async () => {
 			stakedNFT.length === 0 && setIsLoading(true)
 			if (accountId) {
-				
 				const txs: {
 					receiverId: string
 					functionCalls: FunctionCallOptions[]
@@ -48,6 +47,7 @@ const UnstakeNFTModal = (props: UnstakeNFTModalProps) => {
 							token_id: tokenId,
 						},
 					})
+
 
 					stakedTokens.push(tokenInfo)
 
@@ -68,8 +68,7 @@ const UnstakeNFTModal = (props: UnstakeNFTModalProps) => {
 			const txs: {
 				receiverId: string
 				functionCalls: FunctionCallOptions[]
-			}[] = []
-
+			}[] = []			
 
 			txs.push({
 				receiverId: CONTRACT.FARM,

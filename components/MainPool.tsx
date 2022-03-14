@@ -18,7 +18,7 @@ import IconInfo from './Icon/IconInfo'
 
 interface IPoolProcessed {
 	title: string
-	totalStaked: any
+	totalStaked: number
 	rewards: number
 	claimableRewards: number
 	media: string
@@ -51,7 +51,7 @@ const MainPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 			},
 		})
 
-
+		//setStakedNFTCnt
 
 		const unclaimedReward = await near.nearViewFunction({
 			contractName: CONTRACT.FARM,
@@ -61,7 +61,6 @@ const MainPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 			},
 		})
 		const token_reward_amount = 3;
-
 		const poolData: IPoolProcessed = {
 			title: "Kaizo Fighers",
 			media: "./BG image seq loop (30pfs)_00139.jpg",
@@ -87,7 +86,7 @@ const MainPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 					onClose={() => setShowModal(null)}
 				/>
 				<UnstakeNFTModal
-					nftPoints={poolProcessed && poolProcessed.nftPoints ? poolProcessed.nftPoints : []}
+					nftPoints={poolProcessed && poolProcessed.nftPoints.length ? poolProcessed.nftPoints : []}
 					claimableRewards={poolProcessed ? poolProcessed.claimableRewards : 0}
 					title={data.title}
 					show={showModal === 'unstakeNFT'}
@@ -167,7 +166,7 @@ const MainPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 								<p className="opacity-75">Total Staked</p>
 								{type === 'nft' && (
 									<p className="text-4xl font-semibold">
-										{toHumanReadableNumbers(poolProcessed.totalStaked)} Kaizos
+										{toHumanReadableNumbers(`${poolProcessed.totalStaked}`)} Kaizos
 									</p>
 								)}
 							</div>
