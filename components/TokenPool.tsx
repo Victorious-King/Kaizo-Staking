@@ -36,6 +36,12 @@ interface PoolProps {
 	stakedNFT: string[]
 }
 
+interface storageData {
+	total: string
+	available: string
+}
+
+
 type TShowModal = 'stakeNFT' | 'unstakeNFT' | null
 
 const TokenPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
@@ -43,11 +49,20 @@ const TokenPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 	const [poolProcessed, setPoolProcessed] = useState<IPoolProcessed | null>(null)
 	const [showModal, setShowModal] = useState<TShowModal>(null)
 	const [purchaseCnt, setPurchaseCnt] = useState(0);
+	const [storageReg, setStorageReg] = useState(false)
 
 	const getFarms = useCallback(async () => {
 
 
-		console.log('accountId',accountId)
+		const storageStatus: storageData = await near.nearViewFunction({
+			contractName: CONTRACT.TOKEN,
+			methodName: `storage_balance_of`,
+			args: {
+				account_id: accountId
+			},
+		})
+
+		if(storageStatus) setStorageReg(true);
 
 		const totalStakedData = await near.nearViewFunction({
 			contractName: CONTRACT.PRESALE,
@@ -124,6 +139,34 @@ const TokenPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 						token_amount: purchaseCnt,
 					},
 					attachedDeposit: deposited,
+					gas: getAmount(GAS_FEE[150]),
+				},
+			],
+		})
+
+		return await near.executeMultipleTransactions(txs)
+	}
+
+	const storageDeposit = async () => {
+		if (!accountId) return
+
+		const txs: {
+			receiverId: string
+			functionCalls: FunctionCallOptions[]
+		}[] = []
+
+		
+
+		txs.push({
+			receiverId: CONTRACT.TOKEN,
+			functionCalls: [
+				{
+					methodName: 'storage_deposit',
+					contractId: CONTRACT.FARM,
+					args: {
+
+					},
+					attachedDeposit: getAmount("1250000000000000000000"),
 					gas: getAmount(GAS_FEE[150]),
 				},
 			],
@@ -282,6 +325,24 @@ const TokenPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 							
 						</div>
 					</div>
+					{!storageReg && (
+						<div className="mt-4">
+							<div className="flex justify-between items-center p-2 bg-black bg-opacity-60 rounded-md overflow-hidden">
+								<div className="w-2/3">
+									You need to be registered on Dojo Token.
+								</div>
+								<div className="w-1/3">
+									<Button
+										isFullWidth
+										color="blue"
+										onClick={storageDeposit}
+									>
+										storageDeposit
+									</Button>
+								</div>
+							</div>
+						</div>
+					)}
 					{accountId && (
 						<div className="mt-4">
 							Token Claim is available once then the private sale is finished.
@@ -293,6 +354,7 @@ const TokenPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 								<div className="w-1/3">
 									<Button
 										isDisabled={
+											!storageReg ||
 											Number(poolProcessed.claimableRewards) <= 0 ||
 											Math.round(new Date().getTime()/1000) <= poolProcessed.endTime
 										}
