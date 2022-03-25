@@ -41,10 +41,7 @@ const UnstakeNFTModal = (props: UnstakeNFTModalProps) => {
 						account_id: accountId,
 					},
 				})
-				const txs: {
-					receiverId: string
-					functionCalls: FunctionCallOptions[]
-				}[] = []
+
 
 				const stakedTokens: INFToken[] = [];
 				for (const tokenId of userStakedNFTData) {
