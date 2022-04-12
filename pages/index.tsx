@@ -36,16 +36,19 @@ const Home: NextPage = () => {
 	useEffect(() => {
 
 		const getUserStakedNFTData = async () => {
-		    
-		    const userStakedNFTData = await near.nearViewFunction({
-				contractName: CONTRACT.FARM,
-				methodName: `get_amount_by_owner`,
-				args: {
-					account_id: accountId,
-				},
-			})
+		    try{
+			    const userStakedNFTData = await near.nearViewFunction({
+					contractName: CONTRACT.FARM,
+					methodName: `get_amount_by_owner`,
+					args: {
+						account_id: accountId,
+					},
+				})
 
-			setUserStakedNFT(userStakedNFTData)
+				setUserStakedNFT(userStakedNFTData)
+			}catch(e){
+				setUserStakedNFT([])
+			}
 		}
 
 		if (accountId) {

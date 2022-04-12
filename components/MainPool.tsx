@@ -47,6 +47,14 @@ const MainPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 	const [storageReg, setStorageReg] = useState(false)
 
 	const getFarms = useCallback(async () => {
+		const totalStakedData = await near.nearViewFunction({
+			contractName: CONTRACT.FARM,
+			methodName: `get_status`,
+			args: {
+				
+			},
+		})
+		const token_reward_amount = 3;
 		try{
 			const storageStatus: storageData = await near.nearViewFunction({
 				contractName: CONTRACT.TOKEN,
@@ -57,17 +65,9 @@ const MainPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 			})
 
 			if(storageStatus) setStorageReg(true);
-		} catch(e){
-			setStorageReg(false);
-		}
+		
 
-		const totalStakedData = await near.nearViewFunction({
-			contractName: CONTRACT.FARM,
-			methodName: `get_status`,
-			args: {
-				
-			},
-		})
+		
 
 		//setStakedNFTCnt
 
@@ -78,7 +78,7 @@ const MainPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 				from: accountId,
 			},
 		})
-		const token_reward_amount = 3;
+		
 		const poolData: IPoolProcessed = {
 			title: "Kaizo Fighers",
 			media: "./BG image seq loop (30pfs)_00139.jpg",
@@ -89,6 +89,19 @@ const MainPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 		}
 
 		setPoolProcessed(poolData)
+		} catch(e){
+			setStorageReg(false);
+			const poolData: IPoolProcessed = {
+				title: "Kaizo Fighers",
+				media: "./BG image seq loop (30pfs)_00139.jpg",
+				totalStaked: totalStakedData,
+				rewards: ,
+				claimableRewards: 0,
+				nftPoints: stakedNFT,
+			}
+
+			setPoolProcessed(poolData)
+		}
 
 		
 	}, [data.title, accountId])
