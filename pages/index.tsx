@@ -48,8 +48,7 @@ const Home: NextPage = () => {
 			setUserStakedNFT(userStakedNFTData)
 		}
 
-		if (accountId && accountId!='') {
-			console.log('accountId', accountId)
+		if (accountId) {
 			getUserStakedNFTData()
 		}
 	}, [accountId])
