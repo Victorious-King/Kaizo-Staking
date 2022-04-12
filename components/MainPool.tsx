@@ -47,16 +47,19 @@ const MainPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 	const [storageReg, setStorageReg] = useState(false)
 
 	const getFarms = useCallback(async () => {
+		try{
+			const storageStatus: storageData = await near.nearViewFunction({
+				contractName: CONTRACT.TOKEN,
+				methodName: `storage_balance_of`,
+				args: {
+					account_id: accountId
+				},
+			})
 
-		const storageStatus: storageData = await near.nearViewFunction({
-			contractName: CONTRACT.TOKEN,
-			methodName: `storage_balance_of`,
-			args: {
-				account_id: accountId
-			},
-		})
-
-		if(storageStatus) setStorageReg(true);
+			if(storageStatus) setStorageReg(true);
+		} catch(e){
+			setStorageReg(false);
+		}
 
 		const totalStakedData = await near.nearViewFunction({
 			contractName: CONTRACT.FARM,
@@ -112,7 +115,10 @@ const MainPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 	}
 
 	const storageDeposit = async () => {
-		if (!accountId) return
+		if (!accountId) {
+			alert('Login First');
+			return;
+		}
 
 		const txs: {
 			receiverId: string
