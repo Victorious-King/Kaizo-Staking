@@ -95,7 +95,7 @@ const MainPool = ({ data, staked, stakedNFT, type }: PoolProps) => {
 				title: "Kaizo Fighers",
 				media: "./BG image seq loop (30pfs)_00139.jpg",
 				totalStaked: totalStakedData,
-				rewards: ,
+				rewards: token_reward_amount,
 				claimableRewards: 0,
 				nftPoints: stakedNFT,
 			}
